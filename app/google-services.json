@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "835390519438",
+    "firebase_url": "https://voidhacks-f6578.firebaseio.com",
+    "project_id": "voidhacks-f6578",
+    "storage_bucket": "voidhacks-f6578.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835390519438:android:64d77fe0f120a43a",
+        "android_client_info": {
+          "package_name": "com.classmonks.voidhacks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835390519438-s5nm4pub9r5st3bq9ei5us87a045cdn0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.classmonks.voidhacks",
+            "certificate_hash": "e8c661f36b2a701f81d8276cc1d0dc58c54ff634"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4om-8iNy2ndVFCnBaQrMre6PrLdZGXf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835390519438-20cuberp03mvftj0scn9b0hujvcl5shb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
