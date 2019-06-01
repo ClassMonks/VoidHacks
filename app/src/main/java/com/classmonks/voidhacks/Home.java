@@ -4,12 +4,11 @@ import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,28 +41,37 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.SEND_SMS, Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS},
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.SEND_SMS,
+                        Manifest.permission.READ_SMS,
+                        Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.READ_PHONE_STATE
+                },
                     SEND_SMS_PERMISSION_REQUEST_CODE);
 
         createNotificationChannel();
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String device = extras.getString("Device");
-            if (device.equals("Mobile")) {
-                Map<String, String> data = new HashMap<>();
-                data.put("device", "Mobile");
-                data.put("reply", "");
-                data.put("this_message", "");
-                db.collection("messages").document("message")
-                        .set(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getApplicationContext(), "Device updated successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+
+        try {
+            if (extras != null) {
+                String device = extras.getString("Device");
+                if (device.equals("Mobile")) {
+                    Map<String, String> data = new HashMap<>();
+                    data.put("device", "Mobile");
+                    data.put("reply", "");
+                    data.put("this_message", "");
+                    db.collection("messages").document("message")
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getApplicationContext(), "Device updated successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
+        } catch (Exception e) {
+            Log.d("VoidHacks", e.getMessage());
         }
     }
 
@@ -75,7 +83,7 @@ public class Home extends AppCompatActivity {
             String description = "Notification for VoidHacks";
             String CHANNEL_ID = "notification_ch_id";
 
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance

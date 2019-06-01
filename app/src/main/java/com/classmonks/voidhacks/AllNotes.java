@@ -2,9 +2,9 @@ package com.classmonks.voidhacks;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,7 +51,7 @@ public class AllNotes extends AppCompatActivity {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                notesList.add(document.get("this_note").toString());
+                                notesList.add(document.getString("this_note"));
                             }
 
                             mAdapter = new MyAdapter(notesList, mContext);
